@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: devcon
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+      tier: api
+  template:
+    metadata:
+      labels:
+        app: nginx
+        tier: api
+    spec:
+      containers:
+      - image: registry.hub.docker.com/library/nginx:latest
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
